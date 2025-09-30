@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-docusaurus:*)",
+      "Bash(npm install)",
+      "Bash(npm run build:*)",
+      "Bash(unzip:*)",
+      "Read(//tmp/odt_extract/Pictures/**)",
+      "Read(//tmp/odt_extract/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
