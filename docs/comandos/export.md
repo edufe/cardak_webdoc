@@ -7,221 +7,50 @@ Exporta datos de archivos de intercambio a formatos legibles como JSON, CSV o XM
 ```bash
 cardak export [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
-![Ejemplo de uso del comando EXPORT](/img/export-1.png)
+```bash
+$ cardak help export
+usage: cardak export [<flags>] <files>...
+
+Exports the contents of the file as CSV (comma separated values) or HEX records
+
+It can write the values to a file or display them on the console
+
+Flags:
+      --help                 Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose              Add more information displayed on some commands.
+      --mono                 Supress color on output.
+      --ignore               Try to ignore some errors and continue processing the file
+  -W, --width                Ignore small terminal width check and force execution
+  -z, --silent               Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search
+                             utility like fzf
+  -T, --file-type=FILE-TYPE  Filter by file type when supplying several files. File types are represented by a single letter as: I-IPM files, M-MPE files
+  -R, --records=RECORDS      List of record numbers to be exported. Values are separated by comma (,) and ranges are indicated by the starting and ending
+                             record separated by a hyphen (-)
+  -F, --fields=FIELDS        List of IPM fields to be exported (can use a filter name)
+      --console              Do now wirite the file and display output on console
+  -C, --code=CODE            Filter by Function Code description
+  -x, --hex                  Export a .ckh file with records in HEX format
+  -l, --last                 Use the record numbers returned on the last GREP command
+
+Args:
+  <files>  File names to export
+```
+<!-- ![Ejemplo de uso del comando EXPORT](/img/export-1.png) -->
 
 ## Descripción
 
-El comando `EXPORT` convierte datos de archivos de intercambio binarios a formatos estándar legibles por humanos y procesables por otras aplicaciones.
+Este comando permite extraer registros completos o parciales de archivos IPM y guardarlos en archivos en formato CSV o HEX, que pueden ser utilizados por programas externos, o como fuente para ser importados en otros archivos IPM
 
-## Opciones de Formato
+En su defecto, cuando no se especifican otras opciones, se genera un archivo CSV con el mismo nombre del original, pero agregándole “-EXP.csv”
 
-### `--format <formato>`
-Formato de exportación.
+Este archivo puede ser abierto en una planilla tipo Excel para manipular sus datos utilizando las herramientas que ofrecen estas planillas.
 
-Valores posibles:
-- `json`: JavaScript Object Notation
-- `csv`: Comma-Separated Values
-- `xml`: Extensible Markup Language
-- `text`: Texto plano formateado
+Los campos binarios se muestran mediante su representación en Hexa
 
-**Ejemplo**:
-```bash
-cardak export --format json archivo.ipm salida.json
-```
+Si quisiéramos exportar solamente algunos registros, podemos utilizar el flag -R, y si solamente queremos incluir algunos campos, podemos utilizar el flag -F (por mas información de como utilizar estos filtros, por favor leer la sección Flags y Filtros )
 
-## Opciones de Contenido
+Podemos utilizar el flag --hex (x) para exportar los registros en un archivo de formato HEX y no en CSV. En este caso, se ignora el filtro por campo y se exportan los registros completos.
 
-### `--fields <campos>`
-Lista de campos a exportar (separados por coma).
+Tenemos la opción de mostrar los registros exportados (en el formato solicitado) por consola sin generar ningún archivo. Para eso debemos utilizar la opción --console
 
-**Ejemplo**:
-```bash
-cardak export --format csv --fields "DE002,DE004,DE049" archivo.ipm salida.csv
-```
-
-### `--all-fields`
-Exporta todos los campos disponibles.
-
-**Ejemplo**:
-```bash
-cardak export --format json --all-fields archivo.ipm salida.json
-```
-
-### `--record-type <tipo>`
-Exporta solo registros de un tipo específico.
-
-**Ejemplo**:
-```bash
-cardak export --format csv --record-type "0240" archivo.ipm transacciones.csv
-```
-
-### `--pretty`
-Formatea la salida de manera legible (para JSON y XML).
-
-**Ejemplo**:
-```bash
-cardak export --format json --pretty archivo.ipm salida.json
-```
-
-## Opciones de Filtrado
-
-### `--filter <condicion>`
-Exporta solo registros que cumplan una condición.
-
-**Ejemplo**:
-```bash
-cardak export --format csv --filter "DE004 > 100000" archivo.ipm grandes.csv
-```
-
-### `--limit <numero>`
-Limita el número de registros exportados.
-
-**Ejemplo**:
-```bash
-cardak export --format json --limit 100 archivo.ipm muestra.json
-```
-
-## Ejemplos de Uso
-
-### Exportar a JSON
-
-```bash
-cardak export --format json archivo.ipm salida.json
-```
-
-Salida ejemplo:
-```json
-{
-  "header": {
-    "record_type": "0000",
-    "date": "2025-01-15",
-    "file_id": "ABC123"
-  },
-  "transactions": [
-    {
-      "record_type": "0240",
-      "DE002": "5123456789012345",
-      "DE004": "000000015000",
-      "DE049": "840",
-      "DE007": "0115123045"
-    },
-    ...
-  ],
-  "trailer": {
-    "record_type": "0001",
-    "total_records": 5234
-  }
-}
-```
-
-### Exportar a CSV
-
-```bash
-cardak export --format csv archivo.ipm salida.csv
-```
-
-Salida ejemplo:
-```csv
-RecordType,PAN,Amount,Currency,Date
-0240,5123********2345,150.00,840,2025-01-15
-0240,5123********5678,75.50,840,2025-01-15
-...
-```
-
-### Exportar campos específicos a CSV
-
-```bash
-cardak export --format csv --fields "DE002,DE004,DE049,DE007" archivo.ipm salida.csv
-```
-
-### Exportar a XML
-
-```bash
-cardak export --format xml --pretty archivo.ipm salida.xml
-```
-
-Salida ejemplo:
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<ipm_file>
-  <header>
-    <record_type>0000</record_type>
-    <date>2025-01-15</date>
-    <file_id>ABC123</file_id>
-  </header>
-  <transactions>
-    <transaction>
-      <record_type>0240</record_type>
-      <DE002>5123456789012345</DE002>
-      <DE004>000000015000</DE004>
-      <DE049>840</DE049>
-    </transaction>
-    ...
-  </transactions>
-  <trailer>
-    <record_type>0001</record_type>
-    <total_records>5234</total_records>
-  </trailer>
-</ipm_file>
-```
-
-### Exportar solo transacciones grandes
-
-```bash
-cardak export --format csv --filter "DE004 > 100000" archivo.ipm grandes.csv
-```
-
-### Exportar muestra de datos
-
-```bash
-cardak export --format json --limit 10 --pretty archivo.ipm muestra.json
-```
-
-### Exportar para análisis en Excel
-
-```bash
-cardak export \
-  --format csv \
-  --fields "DE002,DE004,DE007,DE049,PDS0023" \
-  --record-type "0240" \
-  archivo.ipm analisis.csv
-```
-
-## Formatos de Campo
-
-### JSON
-- Campos numéricos: como números
-- Campos de texto: como strings
-- Fechas: formato ISO 8601
-- Estructura jerárquica
-
-### CSV
-- Headers en primera línea
-- Campos separados por coma
-- Strings entre comillas si contienen comas
-- PAN enmascarado por seguridad
-
-### XML
-- Estructura de árbol
-- Cada campo como elemento
-- Atributos para metadata
-- Validación con DTD/XSD opcional
-
-### Text
-- Formato tabular
-- Columnas alineadas
-- Separadores visuales
-- Paginación opcional
-
-## Notas
-
-- Los números de tarjeta (PAN) se enmascaran por defecto en CSV y text
-- JSON y XML preservan la estructura completa
-- Los montos se convierten a formato decimal en exportación
-- Las fechas se convierten a formato legible
-- Los archivos grandes pueden tardar en exportarse
-- Se recomienda usar `--fields` para exportaciones grandes
-- El formato CSV es ideal para Excel y análisis de datos
-- El formato JSON es ideal para procesamiento programático
-
-
+Por ultimo, podemos utilizar la opción --last para exportar los registros devueltos por el ultimo comando GREP realizado sobre el archivo.

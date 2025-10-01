@@ -19,6 +19,7 @@ const sidebars = {
       type: 'category',
       label: 'Descripcion',
       items: [
+        'descripcion/primeros-pasos',
         'descripcion/caracteristicas',
         'descripcion/cli',
         'descripcion/tui',
@@ -33,6 +34,7 @@ const sidebars = {
       type: 'category',
       label: 'Comandos',
       items: [
+        'comandos/about',
         'comandos/chop',
         'comandos/convert',
         'comandos/create',

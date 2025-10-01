@@ -7,71 +7,39 @@ Extrae un rango específico de registros de un archivo de intercambio.
 ```bash
 cardak chop [OPCIONES] <archivo_entrada> [archivo_salida]
 ```
-![Ejemplo de uso del comando CHOP](/img/chop-1.png)
+
+```bash
+$ cardak help chop
+usage: cardak chop [<flags>] <file>
+
+Create smaller phisical files from an IPM file
+
+Flags:
+      --help        Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose     Add more information displayed on some commands.
+      --mono        Supress color on output.
+      --ignore      Try to ignore some errors and continue processing the file
+  -W, --width       Ignore small terminal width check and force execution
+  -z, --silent      Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search utility like
+                    fzf
+  -m, --max=100000  Maximum number of records for each generated file
+
+Args:
+  <file>  File name to chop
+  ```
+<!-- ![Ejemplo de uso del comando CHOP](/img/chop-1.png) -->
 
 ## Descripción
 
-El comando `CHOP` permite extraer una porción específica de registros de un archivo de intercambio, especificando un rango de inicio y fin. Es útil para crear archivos de prueba o extraer subconjuntos específicos de transacciones.
+Este comando sirve para fraccionar archivos granes en archivos mas pequeños, lo que facilita su uso, particularmente con comandos como OPEN, donde el consumo de memoria se incrementa de acuerdo al numero de registros, y podemos quedarnos sin recursos al intentar trabajar con archivos grandes.
 
-## Opciones
+Como ejemplo, un archivo con 50.000 registros consume un poco mas de 1 Gb de memoria, y uno de 100.000 registros consume unos 2.2 Gb de memoria, por lo que trabajar con archivos con mas cantidad de registros se puede volver poco practico. Con este comando podemos fraccionar un archivo con gran cantidad de registros en archivos mas chicos y manejables.
 
-### `--start <numero>`
-Número de registro inicial (comienza en 1).
+Si bien la mayoría de los comandos utilizan un método que consiste en ir procesando los registros a medida que son leídos, por lo que el consumo de memoria es acotado e independiente de la cantidad de registros, hay algunos en los que es necesario cargar el contenido total del archivo en memoria (por ejemplo con el comando OPEN, o el comando EXPORT con formato CSV, ya que para obtener la lista de campos presentes en el archivo, debemos haber leído el contenido total antes de proceder a la generación del archivo exportado).
 
-**Ejemplo**:
-```bash
-cardak chop --start 100 archivo.ipm
-```
+Este comando toma el contenido del archivo de entrada, hace un estimado rápido de la cantidad de registros presentes en el archivo (es un estimado ya que para saber el numero exacto, habría que procesar todos los registros ya que son de longitud variable) y procede a ir leyendo los registros de entrada. Cuando encuentra un trailer (fin de un archivo lógico) o se llega a la cantidad de registros especificadas para los archivos de salida, se procede a generar un archivo parcial. Cada uno de los archivos generados tiene como nombre el del archivo original, mas un numero secuencial.
 
-### `--end <numero>`
-Número de registro final (inclusive).
+El parámetro que se puede incluir es el flag --max (-m) para indicar la cantidad de registros que queremos contenga cada archivo generado, ya que si no se indica ningún valor, se asume que cada uno va a contener 100 mil registros (que consumirán aproximadamente 2Gb), lo que consideramos es aceptable, pero se puede utilizar un valor menor en caso de utilizarse en una maquina con pocos recursos de memoria.
 
-**Ejemplo**:
-```bash
-cardak chop --start 100 --end 200 archivo.ipm
-```
-
-### `--count <numero>`
-Número de registros a extraer desde el inicio.
-
-**Ejemplo**:
-```bash
-cardak chop --start 100 --count 50 archivo.ipm
-```
-
-### `--output <archivo>` o `-o <archivo>`
-Archivo de salida. Si no se especifica, se usa stdout.
-
-**Ejemplo**:
-```bash
-cardak chop --start 1 --end 100 -o primeros_100.ipm archivo.ipm
-```
-
-## Ejemplos de Uso
-
-### Extraer los primeros 100 registros
-
-```bash
-cardak chop --start 1 --count 100 archivo.ipm -o inicio.ipm
-```
-
-### Extraer registros del 500 al 1000
-
-```bash
-cardak chop --start 500 --end 1000 archivo.ipm -o rango.ipm
-```
-
-### Extraer registros desde el 1000 hasta el final
-
-```bash
-cardak chop --start 1000 archivo.ipm -o final.ipm
-```
-
-## Notas
-
-- Los números de registro comienzan en 1, no en 0
-- Si no se especifica `--end`, se extraen todos los registros desde `--start` hasta el final
-- El archivo de salida mantiene el mismo formato que el archivo de entrada
-- Los registros de header y trailer se mantienen si están en el rango especificado
 
 

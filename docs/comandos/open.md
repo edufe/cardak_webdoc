@@ -7,14 +7,30 @@ Abre un archivo de intercambio en modo interactivo (TUI - Text User Interface).
 ```bash
 cardak open [OPCIONES] <archivo>
 ```
+```bash
+$ cardak help open
+usage: cardak open [<file>]
 
-![Ejemplo de uso del comando OPEN](/img/open-1.png)
+Open the file in a graphical mode
+
+Flags:
+      --help     Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose  Add more information displayed on some commands.
+      --mono     Supress color on output.
+      --ignore   Try to ignore some errors and continue processing the file
+  -W, --width    Ignore small terminal width check and force execution
+  -z, --silent   Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search utility like fzf
+
+Args:
+  [<file>]  File name to open
+```
+<!-- ![Ejemplo de uso del comando OPEN](/img/open-1.png) -->
 
 ## Descripción
 
-El comando `OPEN` inicia la interfaz de usuario de texto (TUI) de CardAK, que permite explorar archivos de intercambio de manera interactiva y visual. Es la forma más intuitiva de navegar y analizar archivos IPM.
+Este comando permite abrir y visualizar los contenidos de un archivo IPM en forma interactiva. Para conocer en mas detalle el funcionamiento, continuar leyendo la sección llamada [TUI](/tui) (Text User Interface)
 
-## Interfaz TUI
+<!-- ## Interfaz TUI
 
 La interfaz TUI proporciona:
 
@@ -263,4 +279,4 @@ cardak open archivo.ipm
 
 Para más información sobre el TUI, consulte la [documentación detallada de TUI](../tui).
 
-
+ -->

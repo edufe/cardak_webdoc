@@ -7,114 +7,55 @@ Imprime el contenido de un archivo de intercambio en formato legible.
 ```bash
 cardak print [OPCIONES] <archivo>
 ```
+```bash
+$ cardak help print
+usage: cardak print [<flags>] <files>...
 
-![Ejemplo de uso del comando PRINT](/img/print-1.png)
+print the contents of the file record by record
+
+Flags:
+      --help                 Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose              Add more information displayed on some commands.
+      --mono                 Supress color on output.
+      --ignore               Try to ignore some errors and continue processing the file
+  -W, --width                Ignore small terminal width check and force execution
+  -z, --silent               Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search
+                             utility like fzf
+  -T, --file-type=FILE-TYPE  Filter by file type when supplying several files. File types are represented by a single letter as: I-IPM files, M-MPE files
+  -R, --records=RECORDS      List of record numbers to be printed. Values are separated by comma (,) and ranges are indicated by the starting and ending
+                             record separated by a hyphen (-)
+  -F, --fields=FIELDS        List of IPM fields to be listed (can use a filter name)
+  -d, --detailed             Print detailed information showing the contents of the fields
+  -s, --subfields            Show subfields contents
+  -C, --code=CODE            Filter by Function Code DESCRIPTION
+  -l, --last                 Use the record numbers returned on the last GREP command
+
+Args:
+  <files>  File names to print
+```
+<!-- ![Ejemplo de uso del comando PRINT](/img/print-1.png) -->
 
 ## Descripción
 
-El comando `PRINT` muestra el contenido de un archivo de intercambio en la consola de manera legible, similar a comandos como `cat` pero con formato específico para archivos IPM.
+Este comando se utiliza para visualizar los contenidos de archivos IPM.
 
-## Opciones
+Se recibe como parámetro el nombre del archivo a visualizar, y por defecto nos va a mostrar uno por uno los registros del archivo, indicando el numero de registro, su MTI y Function Code, así como una lista de campos DE y PDS presentes en cada registro.
 
-### `--format <formato>`
-Formato de salida.
+Esta vista de por si no es de mucha utilidad, por lo que normalmente va en conjunto con el flag --detailed (-d) que nos muestra los valores de cada uno de los campos.
 
-Valores posibles:
-- `text`: Formato texto (por defecto)
-- `table`: Formato tabla
-- `hex`: Vista hexadecimal
-- `raw`: Datos crudos
+Como normalmente un archivo contiene muchos registros, la salida suele ser demasiado grande, y si bien es posible redireccionarla a un archivo de texto para luego ver su contenido con un editor de texto, el archivo generado puede llegar a ser muy grande.
 
-**Ejemplo**:
-```bash
-cardak print --format table archivo.ipm
-```
+Para ser mas prácticos, se suele agregar el flag --records (-R) donde indicamos los números de registro que deseamos ver, ignorando el resto.
 
-### `--records <rango>`
-Imprime solo registros específicos.
+Ademas, para reducir aun mas la salida, podemos especificar que campos queremos visualizar, utilizando el flag --fields (-F)
 
-**Ejemplo**:
-```bash
-cardak print --records 1-10 archivo.ipm
-cardak print --records 100,200,300 archivo.ipm
-```
+Podemos, al igual que con otros comandos, filtrar los registros por Function Code utilizando el flag --code (-C) y brindando un texto que se usara como filtro en la descripción del Function Code.
 
-### `--record-type <tipo>`
-Imprime solo registros de un tipo específico.
+Otro flag que podemos utilizar es --subfields (-s) para mostrar los componentes de los subcampos en aquellos elementos que los tengan definidos.
 
-**Ejemplo**:
-```bash
-cardak print --record-type "0240" archivo.ipm
-```
+Por ultimo, podemos utilizar el flag --last (-l) para mostrar solamente los registros devueltos por el ultimo comando GREP realizados sobre el archivo.
 
-### `--fields <campos>`
-Muestra solo campos específicos (separados por coma).
-
-**Ejemplo**:
-```bash
-cardak print --fields "DE002,DE004,DE049" archivo.ipm
-```
-
-### `--limit <numero>`
-Limita el número de registros a imprimir.
-
-**Ejemplo**:
-```bash
-cardak print --limit 50 archivo.ipm
-```
-
-### `--no-header`
-No muestra el registro de header.
-
-**Ejemplo**:
-```bash
-cardak print --no-header archivo.ipm
-```
-
-### `--no-trailer`
-No muestra el registro de trailer.
-
-**Ejemplo**:
-```bash
-cardak print --no-trailer archivo.ipm
-```
-
-### `--mask-pan`
-Enmascara números de tarjeta (PANs).
-
-**Ejemplo**:
-```bash
-cardak print --mask-pan archivo.ipm
-```
-
-## Formatos de Salida
-
-### Formato Text
-
-```bash
-cardak print --format text archivo.ipm
-```
-
-Salida:
-```
-=== Record #1 - Type: 0000 (Header) ===
-Record Type: 0000
-Date: 2025-01-15
-File ID: ABC123
-Sender: 123456
-Receiver: 789012
-
-=== Record #2 - Type: 0240 (Transaction) ===
-Record Type: 0240
-DE002: 5123456789012345
-DE004: 000000015000 ($150.00)
-DE007: 0115123045 (2025-01-15 12:30:45)
-DE011: 123456
-DE049: 840 (USD)
-...
-```
-
-### Formato Table
+<!-- ### Formato Table
 
 ```bash
 cardak print --format table archivo.ipm
@@ -147,103 +88,10 @@ Salida:
 00000010: 31 32 33 34 35 36 37 38  39 30 31 32 33 34 35 36  |1234567890123456|
 00000020: 20 20 20 20 20 20 20 20  20 20 20 20 20 20 20 20  |                |
 ...
-```
+``` -->
 
-## Ejemplos de Uso
 
-### Imprimir todo el archivo
-
-```bash
-cardak print archivo.ipm
-```
-
-### Imprimir primeros 10 registros
-
-```bash
-cardak print --limit 10 archivo.ipm
-```
-
-### Imprimir rango de registros
-
-```bash
-cardak print --records 100-200 archivo.ipm
-```
-
-### Imprimir solo transacciones
-
-```bash
-cardak print --record-type "0240" --format table archivo.ipm
-```
-
-### Imprimir campos específicos
-
-```bash
-cardak print --fields "DE002,DE004,DE007,DE049" --format table archivo.ipm
-```
-
-### Imprimir con PANs enmascarados
-
-```bash
-cardak print --mask-pan --format table archivo.ipm
-```
-
-### Imprimir sin header ni trailer
-
-```bash
-cardak print --no-header --no-trailer archivo.ipm
-```
-
-### Imprimir registros específicos en hexadecimal
-
-```bash
-cardak print --format hex --records 150-152 archivo.ipm
-```
-
-### Imprimir y paginar
-
-```bash
-cardak print archivo.ipm | less
-```
-
-### Imprimir y guardar en archivo
-
-```bash
-cardak print --format text archivo.ipm > salida.txt
-```
-
-### Imprimir resumen tabular
-
-```bash
-cardak print \
-  --format table \
-  --fields "DE002,DE004,DE049,DE007" \
-  --record-type "0240" \
-  --limit 100 \
-  --mask-pan \
-  archivo.ipm
-```
-
-## Uso en Pipelines
-
-### Con grep
-
-```bash
-cardak print archivo.ipm | grep "512345"
-```
-
-### Contar registros de un tipo
-
-```bash
-cardak print --record-type "0240" archivo.ipm | grep "Record #" | wc -l
-```
-
-### Extraer campo específico
-
-```bash
-cardak print --fields "DE004" --no-header --no-trailer archivo.ipm
-```
-
-## Diferencias con EXPORT
+<!-- ## Diferencias con EXPORT
 
 | Característica | PRINT | EXPORT |
 |---------------|-------|--------|
@@ -262,9 +110,5 @@ cardak print --fields "DE004" --no-header --no-trailer archivo.ipm
 - El formato table se adapta al ancho de la terminal
 - Para archivos grandes, use `--limit` o `--records`
 - Combine con `less` o `more` para paginación
-- El comando no modifica el archivo original
-
-## Ejemplos
-
-![Ejemplo adicional del comando PRINT](/img/print-2.png)
+- El comando no modifica el archivo original -->
 

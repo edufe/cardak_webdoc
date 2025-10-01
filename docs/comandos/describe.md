@@ -1,204 +1,69 @@
 # DESCRIBE
 
-Proporciona información detallada y estadísticas sobre un archivo de intercambio.
+Proporciona información sobre campos y valores sin necesidad de acudir a un manual
 
 ## Sintaxis
 
 ```bash
 cardak describe [OPCIONES] <archivo>
 ```
+```bash
+$ cardak help describe
+usage: cardak describe [<flags>] <field name> [<search pattern>]
 
-![Ejemplo de uso del comando DESCRIBE](/img/describe-1.png)
+Describe IPM fields and functions.
+
+It accepts the following:
+
+  MT[I]              - Show MTI values
+  TRAN[SACTIONTYPES] - Show valid transaction types
+  FUNC[TIONCODES]    - Show valid function codes
+  D[E]n              - Data Element n (can use wildcards)
+  P[DS]n             - PDS element n (can use wildcards)
+
+Flags:
+      --help       Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose    Add more information displayed on some commands.
+      --mono       Supress color on output.
+      --ignore     Try to ignore some errors and continue processing the file
+  -W, --width      Ignore small terminal width check and force execution
+  -z, --silent     Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search utility like fzf
+  -x, --extended   Display extended information
+  -s, --subfields  Show subfields if they exist
+
+Args:
+  <field name>        Field name to describe (can use wildcards)
+  [<search pattern>]  Pattern used as filter for results
+```
+<!-- ![Ejemplo de uso del comando DESCRIBE](/img/describe-1.png) -->
 
 ## Descripción
 
-El comando `DESCRIBE` analiza un archivo de intercambio y muestra información detallada sobre su contenido, incluyendo:
+Este comando no actúa sobre archivos, es una ayuda rápida para buscar información de campos y valores sin necesidad de recurrir a los manuales.
+Nos sirve, por ejemplo, cuando queremos utilizar algún filtro pero no recordamos en que campo viaja el dato requerido.
 
-- Información del header
-- Número total de registros por tipo
-- Contadores de transacciones
-- Totales monetarios
-- Información del trailer
-- Estadísticas generales
+Es un comando flexible en cuanto a la forma de busqueda, permitiéndose usar comodines y tambien filtrar por partes de la descripción buscada.
 
-## Opciones
+Podemos consultar campos como Data Elements (DE), Private Data Subelements (PDS), MTI, Function Codes y Transaction Codes.
 
-### `--format <formato>`
-Formato de salida de la información.
+Para el caso de los campos, podemos usar la nomenclatura utilizada en casi todas las partes de la herramienta (para detalles de uso, ver la sección Flags y Filtros. Podemos, ademas, utilizar comodines para referirnos a mas de un campo, y se puede agregar (opcionalmente) un texto que sera utilizado para filtrar los elementos a mostrar si contienen el texto indicado. Se nos mostrara información similar a la encontrada en los manuales de la marca.
 
-Valores posibles:
-- `text`: Formato texto legible (por defecto)
-- `json`: Formato JSON
-- `csv`: Formato CSV
+Para los Function y Transaction codes, se nos mostraran los valores y descripciones de las combinaciones de datos correspondientes.
 
-**Ejemplo**:
-```bash
-cardak describe --format json archivo.ipm
-```
+Por defecto se muestra una descripción sumarizada, pero podemos agregar el flag --subfields (-s) para mostrar los subcampos en caso que existan, o el flag --extended (-x) para mostrar información extendida en caso que exista.
 
-### `--detailed` o `-d`
-Muestra información más detallada.
-
-**Ejemplo**:
-```bash
-cardak describe --detailed archivo.ipm
-```
-
-### `--summary`
-Muestra solo un resumen breve.
-
-**Ejemplo**:
-```bash
-cardak describe --summary archivo.ipm
-```
-
-### `--output <archivo>` o `-o <archivo>`
-Guarda la descripción en un archivo.
-
-**Ejemplo**:
-```bash
-cardak describe --format json -o descripcion.json archivo.ipm
-```
-
-## Información Mostrada
-
-### Header
-- Tipo de registro
-- Fecha de creación
-- Identificadores de archivo
-- Parámetros de configuración
-
-### Estadísticas de Registros
-- Total de registros por tipo
-- Número de transacciones
-- Registros de ajuste
-- Registros de fee
-
-### Totales Monetarios
-- Suma total de montos
-- Totales por tipo de transacción
-- Totales por moneda
-
-### Trailer
-- Contadores de control
-- Totales de validación
-- Hash de verificación
-
-### Información General
-- Tamaño del archivo
-- Formato detectado
-- Codificación
-- Estructura
-
-## Ejemplos de Uso
-
-### Descripción básica
-
-```bash
-cardak describe archivo.ipm
-```
-
-Salida ejemplo:
-```
-=== Archivo de Intercambio IPM ===
-
-Información del Header:
-  Tipo: 0000 (Header)
-  Fecha: 2025-01-15
-  Archivo ID: ABC123
-  Formato: ASCII Block 1014
-
-Estadísticas:
-  Total de registros: 5,234
-  Transacciones (0240): 4,850
-  Ajustes (0442): 142
-  Fees (0740): 240
-
-Totales Monetarios:
-  Total general: $1,245,678.90
-  Transacciones: $1,200,000.00
-  Ajustes: $45,678.90
-
-Información del Trailer:
-  Tipo: 0001 (Trailer)
-  Total registros: 5,234
-  Hash: OK
-```
-
-### Descripción detallada en JSON
-
-```bash
-cardak describe --detailed --format json archivo.ipm -o reporte.json
-```
-
-### Resumen rápido
-
-```bash
-cardak describe --summary archivo.ipm
-```
-
-Salida ejemplo:
-```
-Archivo: archivo.ipm
-Registros: 5,234
-Transacciones: 4,850
-Total: $1,245,678.90
-```
-
-### Descripción para múltiples archivos
-
-```bash
-for archivo in *.ipm; do
-  echo "=== $archivo ==="
-  cardak describe --summary "$archivo"
-  echo
-done
-```
-
-## Salida en JSON
-
-Ejemplo de salida con `--format json`:
-
-```json
-{
-  "file": "archivo.ipm",
-  "format": "ascii-block1014",
-  "header": {
-    "record_type": "0000",
-    "date": "2025-01-15",
-    "file_id": "ABC123"
-  },
-  "statistics": {
-    "total_records": 5234,
-    "transactions": 4850,
-    "adjustments": 142,
-    "fees": 240
-  },
-  "totals": {
-    "amount": 124567890,
-    "currency": "840"
-  },
-  "trailer": {
-    "record_type": "0001",
-    "record_count": 5234,
-    "hash_valid": true
-  }
-}
-```
-
-## Notas
-
-- El comando no modifica el archivo original
-- La información se obtiene de manera eficiente sin cargar todo el archivo en memoria
-- Los totales se verifican contra los valores del trailer
-- Si hay discrepancias, se muestran advertencias
-- El formato JSON es útil para automatización y procesamiento posterior
-
-## Ejemplos
-
+Por ejemplo, tomemos el campo DE43. Si no estamos seguros que contiene, podemos hacer lo siguiente:
 ![Ejemplo adicional del comando DESCRIBE](/img/describe-2.png)
 
+O digamos que queremos buscar un importe pero no recordamos en que campo viene dicho dato. En ese caso podemos pedir todos los DE pero filtrando por la descripción:
 ![Ejemplo adicional del comando DESCRIBE](/img/describe-3.png)
 
+Vemos que en este caso pedimos todos los Data Elements indicándolo con ‘D*’. Es necesario usar comillas ya que de lo contrario el shell va a intentar expandir el asterisco.
+
+Por ejemplo, veamos los Function codes:
 ![Ejemplo adicional del comando DESCRIBE](/img/describe-4.png)
+
+Se nos muestra por cada valor de MTI, los valores que pueden utilizarse en el campo DE24 y su significado.
+
+Esto nos ahorra tener que ir a buscar en los manuales los valores que corresponden a cada tipo de transacción, y es muy útil a la hora de realizar búsquedas en archivos cuando no siempre recordamos los valores que tenemos que usar para los filtros
 

@@ -7,79 +7,50 @@ Crea un nuevo archivo de intercambio desde cero o a partir de plantillas.
 ```bash
 cardak create [OPCIONES] <archivo_salida>
 ```
+```bash
+$ cardak help create
+usage: cardak create [<flags>] <file>
 
-![Ejemplo del comando CREATE](/img/convert-2.png)
+Create a new IPM file
+
+Flags:
+      --help                 Show context-sensitive help (also try --help-long and --help-man).
+  -v, --verbose              Add more information displayed on some commands.
+      --mono                 Supress color on output.
+      --ignore               Try to ignore some errors and continue processing the file
+  -W, --width                Ignore small terminal width check and force execution
+  -z, --silent               Suppress all output (banner, headers, summary) except the results. Specially useful for DESCRIBE command piped to a search
+                             utility like fzf
+      --import=IMPORT        File containing the records to be imported
+      --pds105=PDS105        String representing the value of PDS 0105
+      --file-type=FILE-TYPE  File Type to be used in the header
+      --file-date=FILE-DATE  File date, defaults to today
+      --processor-id=PROCESSOR-ID
+                             The processor ID
+      --sequence-number=SEQUENCE-NUMBER
+                             The sequence number
+      --processing-mode=PROCESSING-MODE
+                             The processing mode, T or P
+      --encoding=ENCODING    Encoding for new file, default ASCII
+      --block                If present, the file will be in block 1014
+
+Args:
+  <file>  IPM file name to create
+  ```
+<!-- ![Ejemplo del comando CREATE](/img/convert-2.png) -->
 
 ## Descripción
 
-El comando `CREATE` permite crear nuevos archivos de intercambio IPM, ya sea vacíos con solo header y trailer, o a partir de plantillas predefinidas.
+Con este comando podemos crear un nuevo archivo IPM y opcionalmente cargar registros exportados previamente mediante el comando EXPORT
 
-## Opciones
+Para la creación del nuevo archivo, necesitamos indicar el valor del File ID que forma parte del cabezal del archivo, y el File Processing Mode. Podemos indicar el contenido completo del PDS 0105 (los 25 caracteres del File ID), o indicar los subcampos de dicho PDS.
 
-### `--format <formato>`
-Formato del archivo a crear.
+Si decidimos indicar los subcampos, es necesario al menos indicar el SF 01(File Type) y el SF 03 (Processor ID). Si no indicamos el SF 02 (File Reference Date) se va a tomar por defecto la fecha actual, y para el SF 04 (File Sequence Number) se toma el valor 1000
 
-Valores posibles:
-- `ebcdic`: Crear en codificación EBCDIC
-- `ascii`: Crear en codificación ASCII
+Si no indicamos el Processing Mode, se va a tomar por defecto el valor “T” (Test)
 
-**Ejemplo**:
-```bash
-cardak create --format ascii nuevo.ipm
-```
+Otros parámetros a indicar son la codificación (si no indicamos nada, se asume ASCII) y si el archivo va a estar o no en Block 1014 (por defecto no)
 
-### `--structure <estructura>`
-Estructura del archivo.
+Si no indicamos un archivo que contenga registros previamente exportados, se va a generar un archivo “vacio”, es decir, conteniendo solamente un Header y un Trailer
 
-Valores posibles:
-- `rdw`: Record Descriptor Word
-- `block1014`: Bloques de 1014 bytes
-- `flat`: Archivo plano
-
-**Ejemplo**:
-```bash
-cardak create --format ascii --structure block1014 nuevo.ipm
-```
-
-### `--template <plantilla>`
-Usar una plantilla predefinida.
-
-**Ejemplo**:
-```bash
-cardak create --template basic nuevo.ipm
-```
-
-### `--header-data <datos>`
-Datos para el registro de header.
-
-### `--trailer-data <datos>`
-Datos para el registro de trailer.
-
-## Ejemplos de Uso
-
-### Crear archivo vacío en ASCII
-
-```bash
-cardak create --format ascii --structure block1014 nuevo.ipm
-```
-
-### Crear archivo desde plantilla
-
-```bash
-cardak create --template basic --format ebcdic nuevo.ipm
-```
-
-### Crear archivo con header personalizado
-
-```bash
-cardak create \
-  --format ascii \
-  --header-data "0000001120250101..." \
-  nuevo.ipm
-```
-
-## Notas
-
-- Los archivos creados incluyen registros de header y trailer válidos
-- Las plantillas proporcionan estructuras básicas válidas
-- Es recomendable validar el archivo creado antes de usarlo
+En caso de indicar un archivo con registros exportados previamente, el mismo puede ser un export en formato CSV completo, o un export en formato HEX (extension .ckh)

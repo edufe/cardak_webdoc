@@ -2,72 +2,31 @@
 slug: /
 ---
 
-# CardAK - Presentación
+# Introducción
 
 **Gestor de Archivos de Intercambio de Tarjetas y Utilidades**
 
 Versión: 0.42.x
 
-## Introducción
+## ¿Qué es CardAK?
 
 CardAK (Card Army Knife) es una herramienta de línea de comandos diseñada para gestionar archivos de intercambio de tarjetas MasterCard IPM (Interchange Processing Message). Proporciona un conjunto completo de utilidades para manipular, analizar y validar archivos de intercambio.
 
-## ¿Qué es CardAK?
+Nació de la necesidad de facilitar el manejo de dichos archivos, que son difíciles de visualizar y manipular debido a su formato.
 
-CardAK es una navaja suiza para el manejo de archivos de intercambio de tarjetas. Ofrece funcionalidades para:
+Por el momento maneja en la mayoría de sus funciones, archivos **IPM** de MasterCard (acciones limitadas sobre archivos **MPE**)
 
-- **Lectura y análisis** de archivos de intercambio
-- **Conversión** entre diferentes formatos (EBCDIC, ASCII, RDW, Block 1014)
-- **Validación** de estructuras y datos
-- **Filtrado y búsqueda** de transacciones específicas
-- **Exportación** a formatos legibles (JSON, CSV, XML)
-- **Manipulación** de archivos (split, join, fix)
-- **Interfaz de usuario interactiva** (TUI - Text User Interface)
+Esta herramienta funciona tanto en ambientes Windows como Linux
 
-## Características Principales
+## Como utilizar este manual
 
-- Soporte para múltiples formatos de archivo
-- Conversión entre codificaciones EBCDIC y ASCII
-- Validación de estructuras de archivos IPM
-- Búsqueda y filtrado avanzado de transacciones
-- Exportación a formatos estándar
-- Identificación automática de formato de archivo
-- Interfaz de línea de comandos intuitiva
-- Modo interactivo TUI para exploración visual
+Debido a la complejidad de la herramienta, y al uso de conceptos que no necesariamente son de uso frecuente, se ha decidido separar este documento en tres grandes áreas. La primera, con ejemplos de uso practico y como utilizar la herramienta para solucionarlos. La segunda, es una explicación detallada de cada uno de los comandos, pensada tanto para el uso de un operador como en la automatización de procesos.
 
-## Instalación
+Por ultimo, en una tercera parte, se describe y se muestra la utilización de la opción grafica (a nivel de textos) de la misma, que si bien incluye la mayoría de las funcionalidades de los comandos, requiere del uso de combinaciones de teclas para poder interactuar con ella.
 
-CardAK se distribuye como un ejecutable portable. No requiere instalación adicional.
+Se sugiere repasar la sección Casos de uso tanto para entender su aplicación en situaciones típicas como para referencia ante casos similares. Para profundizar mas en las características y opciones de cada comando, utilizar la sección correspondiente a los Comandos
 
-## Uso Básico
-
-```bash
-cardak [COMANDO] [OPCIONES] [ARCHIVO]
-```
-
-Para ver todos los comandos disponibles:
-
-```bash
-cardak --help
-```
-
-![Comandos disponibles en CardAK](/img/comandos-1.png)
-
-Para obtener ayuda sobre un comando específico:
-
-```bash
-cardak [COMANDO] --help
-```
-
-## Modo Interactivo (TUI)
-
-CardAK incluye una interfaz de usuario de texto interactiva que permite explorar archivos de intercambio de manera visual:
-
-```bash
-cardak open [ARCHIVO]
-```
-
-## Próximos Pasos
+<!-- ## Próximos Pasos
 
 Explore la documentación para conocer más sobre:
 
@@ -75,4 +34,4 @@ Explore la documentación para conocer más sobre:
 - [Casos de Uso](casos-de-uso)
 - [Comandos Disponibles](comandos/chop)
 - [Flags y Filtros](flags-filtros)
-- [Interfaz TUI](tui)
+- [Interfaz TUI](tui) -->

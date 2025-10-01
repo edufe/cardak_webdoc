@@ -2,7 +2,37 @@
 
 CardAK ofrece un conjunto completo de herramientas para el manejo de archivos de intercambio de tarjetas MasterCard IPM.
 
-## Funcionalidades Principales
+Sus características principales son:
+    - Multiplataforma (existe una versión para Linux y para Windows)
+    - No requiere de una instalación especial, se trata de un solo binario ejecutable y basta con copiarlo en un directorio que se encuentre en el PATH
+    - Es una aplicación de linea de comandos, por lo que se utiliza desde una consola o terminal. Esto permite utilizarla fácilmente en servidores remotos
+    - Se puede utilizar tanto para procesos automatizados, como en forma interactiva por un usuario
+
+Entre sus funcionalidades se destacan:
+    - Identificar los tipos de archivo por su contenido y no por su nombre
+    - Convertir entre formatos (ASCII/EBCDIC, con/sin bloques de 1014, etc.)
+    - Validar los archivos ante errores de formato y algunos errores de datos
+    - Posibilidad de corrección de algunos errores en forma automática
+    - Soporta archivos lógicos en archivos físicos (trasnsmissions), permitiendo separarlos en archivos físicos y viceversa
+    - Permite exportar sus datos en formatos "legibles", como ser archivos de texto planos, en formato CSV (que pueden abrirse en Excel), o como valores en hexadecimal para poder ser importados en otro archivo
+    - Importar en un archivo datos previamente exportados desde otro
+    - Detección de registros duplicados dentro de un mismo archivo
+    - Fraccionamiento de archivos grandes en archivos mas chicos para facilitar su manejo
+    - Búsqueda de datos mediante condiciones flexibles en uno o varios archivos
+    - Distribución de registros de un archivo en otros, de acuerdo a criterios definidos por el usuario
+    - Eliminación de registros de un archivo
+    - Abrir los archivos en forma interactiva, donde se pueden realizar acciones tales como:
+        - Visualizar el contenido de los registros.
+        - Eliminar registros y/o campos de un registro
+        - Editar registros
+        - Realizar búsquedas y filtrado
+        - Exportar los registros deseados
+        - Importar registros exportados desde otro archivo
+        - Agregar registros y/o campos
+
+Ademas, hay nuevas funcionalidades en desarrollo.
+
+## Resumen de funcionalidades
 
 ### 1. Lectura y Análisis de Archivos
 
