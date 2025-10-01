@@ -8,6 +8,8 @@ Filtra registros de un archivo de intercambio basándose en múltiples criterios
 cardak filter [OPCIONES] <archivo_entrada> [archivo_salida]
 ```
 
+![Ejemplo de uso del comando FILTER](/img/filter-1.png)
+
 ## Descripción
 
 El comando `FILTER` permite seleccionar registros específicos de un archivo de intercambio usando condiciones complejas sobre campos de datos. Es una de las herramientas más poderosas para análisis y extracción de datos.
@@ -296,9 +298,7 @@ cardak filter --condition "(DE004 > 10000 AND DE049 = 840) OR (DE004 > 5000 AND 
 - Se recomienda usar `--count` primero para verificar resultados
 - Para archivos grandes, use filtros específicos para mejor rendimiento
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando FILTER](/img/filter-1.png)
+## Ejemplos
 
 ![Ejemplo adicional del comando FILTER](/img/filter-2.png)
 

@@ -8,6 +8,8 @@ Proporciona información detallada y estadísticas sobre un archivo de intercamb
 cardak describe [OPCIONES] <archivo>
 ```
 
+![Ejemplo de uso del comando DESCRIBE](/img/describe-1.png)
+
 ## Descripción
 
 El comando `DESCRIBE` analiza un archivo de intercambio y muestra información detallada sobre su contenido, incluyendo:
@@ -192,9 +194,7 @@ Ejemplo de salida con `--format json`:
 - Si hay discrepancias, se muestran advertencias
 - El formato JSON es útil para automatización y procesamiento posterior
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando DESCRIBE](/img/describe-1.png)
+## Ejemplos
 
 ![Ejemplo adicional del comando DESCRIBE](/img/describe-2.png)
 

@@ -7,6 +7,7 @@ Exporta datos de archivos de intercambio a formatos legibles como JSON, CSV o XM
 ```bash
 cardak export [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
+![Ejemplo de uso del comando EXPORT](/img/export-1.png)
 
 ## Descripción
 
@@ -223,7 +224,4 @@ cardak export \
 - El formato CSV es ideal para Excel y análisis de datos
 - El formato JSON es ideal para procesamiento programático
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando EXPORT](/img/export-1.png)
 

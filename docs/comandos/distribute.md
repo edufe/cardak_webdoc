@@ -7,6 +7,7 @@ Distribuye registros de un archivo en múltiples archivos de salida según crite
 ```bash
 cardak distribute [OPCIONES] <archivo_entrada>
 ```
+![Ejemplo de uso del comando DISTRIBUTE](/img/distribute-1.png)
 
 ## Descripción
 
@@ -98,9 +99,7 @@ cardak distribute --by-bin --prefix "bank_" --output-dir ./bancos archivo.ipm
 - Los nombres de archivo se generan automáticamente basándose en el criterio
 - Se mantiene el formato del archivo original
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando DISTRIBUTE](/img/distribute-1.png)
+## Ejemplos
 
 ![Ejemplo adicional del comando DISTRIBUTE](/img/distribute-2.png)
 

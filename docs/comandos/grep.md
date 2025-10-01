@@ -8,6 +8,8 @@ Busca patrones específicos en campos de registros de un archivo de intercambio.
 cardak grep [OPCIONES] <patron> <archivo>
 ```
 
+![Ejemplo de uso del comando GREP](/img/grep-1.png)
+
 ## Descripción
 
 El comando `GREP` permite buscar registros que contengan patrones específicos en campos determinados, similar al comando Unix grep pero específico para archivos de intercambio IPM.
@@ -202,7 +204,4 @@ Campos frecuentemente buscados:
 - Las expresiones regulares siguen la sintaxis de Rust regex
 - Para búsquedas en múltiples campos, use múltiples comandos o el comando `filter`
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando GREP](/img/grep-1.png)
 

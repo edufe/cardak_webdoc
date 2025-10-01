@@ -7,6 +7,7 @@ Repara archivos de intercambio con problemas estructurales o de integridad.
 ```bash
 cardak fix [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
+![Ejemplo de uso del comando FIX](/img/fix-1.png)
 
 ## Descripción
 
@@ -205,7 +206,4 @@ El comando `FIX` tiene limitaciones:
 - Revise el log de reparación para entender qué se cambió
 - El archivo de salida puede ser más pequeño si se eliminaron registros
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando FIX](/img/fix-1.png)
 

@@ -8,6 +8,8 @@ Abre un archivo de intercambio en modo interactivo (TUI - Text User Interface).
 cardak open [OPCIONES] <archivo>
 ```
 
+![Ejemplo de uso del comando OPEN](/img/open-1.png)
+
 ## Descripción
 
 El comando `OPEN` inicia la interfaz de usuario de texto (TUI) de CardAK, que permite explorar archivos de intercambio de manera interactiva y visual. Es la forma más intuitiva de navegar y analizar archivos IPM.
@@ -261,7 +263,4 @@ cardak open archivo.ipm
 
 Para más información sobre el TUI, consulte la [documentación detallada de TUI](../tui).
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando OPEN](/img/open-1.png)
 

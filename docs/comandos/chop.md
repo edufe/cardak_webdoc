@@ -7,6 +7,7 @@ Extrae un rango específico de registros de un archivo de intercambio.
 ```bash
 cardak chop [OPCIONES] <archivo_entrada> [archivo_salida]
 ```
+![Ejemplo de uso del comando CHOP](/img/chop-1.png)
 
 ## Descripción
 
@@ -73,7 +74,4 @@ cardak chop --start 1000 archivo.ipm -o final.ipm
 - El archivo de salida mantiene el mismo formato que el archivo de entrada
 - Los registros de header y trailer se mantienen si están en el rango especificado
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando CHOP](/img/chop-1.png)
 

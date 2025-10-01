@@ -7,6 +7,7 @@ Detecta, reporta y elimina transacciones duplicadas en archivos de intercambio.
 ```bash
 cardak duplicates [OPCIONES] <archivo>
 ```
+![Ejemplo de uso del comando DUPLICATES](/img/duplicates-1.png)
 
 ## Descripción
 
@@ -166,7 +167,4 @@ cardak describe limpio.ipm
 - La detección es sensible a mayúsculas/minúsculas en campos de texto
 - Para archivos muy grandes, el proceso puede tomar tiempo
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando DUPLICATES](/img/duplicates-1.png)
 

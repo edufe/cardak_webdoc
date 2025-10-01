@@ -8,6 +8,8 @@ Valida la estructura e integridad de un archivo de intercambio.
 cardak validate [OPCIONES] <archivo>
 ```
 
+![Ejemplo de uso del comando VALIDATE](/img/validate-1.png)
+
 ## Descripción
 
 El comando `VALIDATE` realiza una validación exhaustiva de un archivo de intercambio, verificando su estructura, integridad de datos, y cumplimiento con las especificaciones IPM.
@@ -376,7 +378,4 @@ El comando `validate` usa códigos de salida estándar:
 - La validación de PANs usa el algoritmo de Luhn
 - Algunos warnings pueden ser aceptables según el caso de uso
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando VALIDATE](/img/validate-1.png)
 

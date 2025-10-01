@@ -8,6 +8,8 @@ Combina múltiples archivos de intercambio en un solo archivo consolidado.
 cardak join [OPCIONES] <archivo1> <archivo2> [archivo3...] --output <archivo_salida>
 ```
 
+![Ejemplo de uso del comando JOIN](/img/join-1.png)
+
 ## Descripción
 
 El comando `JOIN` permite combinar múltiples archivos de intercambio en un solo archivo, consolidando headers y trailers, y recalculando totales automáticamente.
@@ -224,7 +226,4 @@ Totales recalculados:
 - Se recomienda hacer backup de archivos originales
 - El orden de los archivos en la línea de comandos determina el orden en el archivo consolidado
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando JOIN](/img/join-1.png)
 

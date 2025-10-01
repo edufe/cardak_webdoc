@@ -8,6 +8,8 @@ Crea un nuevo archivo de intercambio desde cero o a partir de plantillas.
 cardak create [OPCIONES] <archivo_salida>
 ```
 
+![Ejemplo del comando CREATE](/img/convert-2.png)
+
 ## Descripción
 
 El comando `CREATE` permite crear nuevos archivos de intercambio IPM, ya sea vacíos con solo header y trailer, o a partir de plantillas predefinidas.

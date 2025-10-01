@@ -42,6 +42,8 @@ scp -r build/* user@remote-server:/path/to/webroot/
 
 # Opción 2: Usando rsync
 rsync -avz build/ user@remote-server:/path/to/webroot/
+ or 
+rsync -avz /home/eduardo/projects/cardak_webdoc/build/ felippone.com:/var/www/cardak/
 
 # Opción 3: Usando FTP/SFTP (con tu cliente preferido)
 ```

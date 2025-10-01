@@ -8,6 +8,8 @@ Importa datos desde formatos externos (JSON, CSV, XML) para crear archivos de in
 cardak import [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
 
+![Ejemplo de uso del comando IMPORT](/img/import-1.png)
+
 ## Descripción
 
 El comando `IMPORT` convierte datos desde formatos legibles (JSON, CSV, XML) a archivos de intercambio IPM binarios. Es el proceso inverso del comando `EXPORT`.
@@ -291,7 +293,4 @@ Durante la importación se valida:
 - El mapeo de campos es flexible pero debe ser consistente
 - Para CSV, todas las filas deben tener el mismo número de columnas
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando IMPORT](/img/import-1.png)
 

@@ -1,4 +1,4 @@
-# TUI - Interfaz de Usuario de Texto
+# TUI - Modo interactivo
 
 La interfaz de usuario de texto (TUI) de CardAK proporciona una forma interactiva y visual de explorar archivos de intercambio IPM.
 

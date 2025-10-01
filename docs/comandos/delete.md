@@ -7,6 +7,7 @@ Elimina registros específicos de un archivo de intercambio.
 ```bash
 cardak delete [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
+![Ejemplo de uso del comando DELETE](/img/delete-1.png)
 
 ## Descripción
 
@@ -114,9 +115,7 @@ cardak delete --field PDS0023 --value "123456" archivo.ipm limpio.ipm
 - Se actualizan automáticamente los totales en header y trailer
 - Se recomienda validar el archivo resultante
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando DELETE](/img/delete-1.png)
+## Ejemplos
 
 ![Ejemplo adicional del comando DELETE](/img/delete-2.png)
 

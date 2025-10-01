@@ -8,6 +8,8 @@ Convierte archivos de intercambio entre diferentes formatos y codificaciones.
 cardak convert [OPCIONES] <archivo_entrada> <archivo_salida>
 ```
 
+![Ejemplo de uso del comando CONVERT](/img/convert-1.png)
+
 ## Descripción
 
 El comando `CONVERT` permite convertir archivos de intercambio entre diferentes formatos de codificación (EBCDIC/ASCII) y estructuras de archivo (RDW/Block/Flat). Esta es una de las funcionalidades más utilizadas para interoperabilidad entre sistemas mainframe y modernos.
@@ -126,10 +128,4 @@ cardak convert --from auto --to ascii archivo.ipm salida.ipm
 - Los archivos Block 1014 agrupan registros en bloques de tamaño fijo
 - La conversión de codificación afecta a todos los campos de texto
 - Los campos numéricos se manejan de manera especial para preservar su valor
-
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando CONVERT](/img/convert-1.png)
-
-![Ejemplo adicional del comando CONVERT](/img/convert-2.png)
 

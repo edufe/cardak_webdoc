@@ -8,6 +8,8 @@ Imprime el contenido de un archivo de intercambio en formato legible.
 cardak print [OPCIONES] <archivo>
 ```
 
+![Ejemplo de uso del comando PRINT](/img/print-1.png)
+
 ## Descripción
 
 El comando `PRINT` muestra el contenido de un archivo de intercambio en la consola de manera legible, similar a comandos como `cat` pero con formato específico para archivos IPM.
@@ -262,9 +264,7 @@ cardak print --fields "DE004" --no-header --no-trailer archivo.ipm
 - Combine con `less` o `more` para paginación
 - El comando no modifica el archivo original
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando PRINT](/img/print-1.png)
+## Ejemplos
 
 ![Ejemplo adicional del comando PRINT](/img/print-2.png)
 

@@ -8,6 +8,8 @@ Divide un archivo de intercambio grande en múltiples archivos más pequeños.
 cardak split [OPCIONES] <archivo_entrada>
 ```
 
+![Ejemplo de uso del comando SPLIT](/img/split-1.png)
+
 ## Descripción
 
 El comando `SPLIT` divide un archivo de intercambio en múltiples archivos más pequeños según diversos criterios como número de registros, tamaño de archivo, fecha, o campos específicos.
@@ -317,7 +319,4 @@ diff original.txt reunificado.txt
 - Los archivos generados mantienen el formato del original
 - Se recomienda usar `--validate` para asegurar integridad
 
-## Ejemplos con Capturas de Pantalla
-
-![Ejemplo de uso del comando SPLIT](/img/split-1.png)
 

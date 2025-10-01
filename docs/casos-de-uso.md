@@ -1,4 +1,4 @@
-# Casos de Uso
+# Ejemplos practicos
 
 CardAK está diseñado para resolver problemas comunes en el manejo de archivos de intercambio de tarjetas.
 

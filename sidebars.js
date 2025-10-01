@@ -17,8 +17,12 @@ const sidebars = {
     'intro',
     {
       type: 'category',
-      label: 'Características',
-      items: ['caracteristicas'],
+      label: 'Descripcion',
+      items: [
+        'descripcion/caracteristicas',
+        'descripcion/cli',
+        'descripcion/tui',
+      ],
     },
     {
       type: 'category',
@@ -52,7 +56,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Flags y Filtros',
+      label: 'CLI - Linea de comandos',
       items: ['flags-filtros'],
     },
     {
