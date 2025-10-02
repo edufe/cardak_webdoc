@@ -27,7 +27,6 @@ Flags:
   -b, --binlength=BINLENGTH  Keep these number of leading characters as the BIN. Value must be greater than 1
   -R, --records=RECORDS      List of record numbers to be Searched. Values are separated by comma (,) and ranges are indicated by the starting and ending
                              record separated by a hyphen (-)
-  -F, --fields=FIELDS        List of IPM fields to be searched (can use a filter name)
   -l, --last                 Use the record numbers returned on the last GREP command
 
 Args:

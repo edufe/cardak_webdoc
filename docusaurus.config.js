@@ -80,7 +80,7 @@ const config = {
       footer: {
         style: 'dark',
         links: [],
-        copyright: `Copyright © 2025 / <strong>CardAK</strong> - Card Army Knife v0.42.x<br/>Powered by <a href="https://felsol.com" target="_blank" rel="noopener noreferrer">Felsol</a>`,
+        copyright: `Copyright © 2025 / <strong>CardAK</strong> - Card Army Knife v0.42.x<br/>Powered by <a href="https://felsol.com">Felsol</a>`,
       },
       prism: {
         theme: prismThemes.github,

@@ -1,9 +1,9 @@
 # Acerca de los comandos
 
-Cuando se utiliza cardak por linea de comandos, este recibe un comando y opcionalmente flags y parametros. El formato es:
+Cuando se utiliza cardak por linea de comandos, este recibe un comando y opcionalmente flags y parámetros. El formato es:
 
 ```bash
-cardak [flags] [comando] [parametros]
+cardak [flags] [comando] [parámetros]
 ```
 Si se omite el valor de comando, se asume por defecto el comando IDENTIFY
 

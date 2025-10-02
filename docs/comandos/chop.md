@@ -12,7 +12,7 @@ cardak chop [OPCIONES] <archivo_entrada> [archivo_salida]
 $ cardak help chop
 usage: cardak chop [<flags>] <file>
 
-Create smaller phisical files from an IPM file
+Create smaller physical files from an IPM file
 
 Flags:
       --help        Show context-sensitive help (also try --help-long and --help-man).

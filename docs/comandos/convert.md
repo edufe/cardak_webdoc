@@ -38,7 +38,7 @@ Args:
 
               Encoding      : [E] - EBCDIC, [A] - ASCII
               Record format : [R] - RDW, [F] - Fixed 1400, [1] - Fixed 1400, [6] - Fixed 600, [D] - Delimited
-              File format   : [B] - Block 1014, [N] - Nomrmal
+              File format   : [B] - Block 1014, [N] - Normal
   <files>   List of files. This can be a single file or you can use wildcards
 ```
 <!-- ![Ejemplo de uso del comando CONVERT](/img/convert-1.png) -->
