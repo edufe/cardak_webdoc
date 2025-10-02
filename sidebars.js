@@ -49,6 +49,7 @@ const sidebars = {
         'comandos/identify',
         'comandos/import',
         'comandos/join',
+        'comandos/obfuscate',
         'comandos/open',
         'comandos/print',
         'comandos/replace',

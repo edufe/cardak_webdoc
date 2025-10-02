@@ -4,8 +4,6 @@ slug: /
 
 # Introducción
 
-**Gestor de Archivos de Intercambio de Tarjetas y Utilidades**
-
 Versión: 0.42.x
 
 ## ¿Qué es CardAK?
