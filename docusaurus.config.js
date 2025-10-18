@@ -16,11 +16,11 @@ const config = {
   url: 'https://www.felsol.com',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/cardak/',
+  baseUrl: '/cardak/manual/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'your-org', // Usually your GitHub org/user name.
+  organizationName: 'FelSol', // Usually your GitHub org/user name.
   projectName: 'cardak-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -65,7 +65,7 @@ const config = {
         title: 'CardAK',
         logo: {
           alt: 'CardAK Logo',
-          src: 'img/logo.svg',
+          src: 'img/cardak-logo-filled.svg',
           href: '/',
         },
         items: [
